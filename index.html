@@ -1,0 +1,1069 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Harakah حركه · Renew my ID</title>
+<meta name="description" content="Sign I want to renew my ID to your camera and Harakah says it out loud for the person helping you.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=JetBrains+Mono:wght@400;600;700&family=Reem+Kufi:wght@500..700&display=swap">
+<style>
+/* Layout: app shell — slim top bar with three tabs; Translate is a two-column
+   workspace (camera | words), Learn is a segmented lesson area, My signs pairs the camera with a sign list. */
+:root {
+  --bg: #EEF2F5;
+  --surface: #FFFFFF;
+  --surface-2: #E4EAEF;
+  --ink: #13222D;
+  --muted: #566874;
+  --line: #CFD9E0;
+  --accent: #E3940C;
+  --accent-soft: #FBE7C2;
+  --on-accent: #241500;
+  --signal: #0F7F75;
+  --signal-soft: #D3EEEA;
+  --danger: #B9402B;
+  --hand: #FFE3B3;
+  --hand-palm: #F6D39C;
+  --hand-line: #13222D;
+  --shadow: 0 1px 2px rgba(19, 34, 45, .06), 0 8px 24px rgba(19, 34, 45, .06);
+  --font-display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Atkinson Hyperlegible", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "Cascadia Code", Menlo, monospace;
+  --r: 14px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0D161C; --surface: #142029; --surface-2: #1B2A35; --ink: #E6EEF2; --muted: #93A5B1; --line: #263845;
+    --accent: #F2AB33; --accent-soft: #3A2A10; --on-accent: #1E1200; --signal: #3DC2B2; --signal-soft: #12302E;
+    --danger: #EE7B63; --hand: #F3D29C; --hand-palm: #E2BD82; --hand-line: #0D161C;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .25);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0D161C; --surface: #142029; --surface-2: #1B2A35; --ink: #E6EEF2; --muted: #93A5B1; --line: #263845;
+  --accent: #F2AB33; --accent-soft: #3A2A10; --on-accent: #1E1200; --signal: #3DC2B2; --signal-soft: #12302E;
+  --danger: #EE7B63; --hand: #F3D29C; --hand-palm: #E2BD82; --hand-line: #0D161C;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .25);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: var(--bg); color: var(--ink);
+  font: 16px/1.55 var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; margin: 0; text-wrap: balance; letter-spacing: -.01em; }
+h1 { font-size: clamp(1.7rem, 3.2vw, 2.4rem); font-weight: 700; }
+h2 { font-size: 1.2rem; font-weight: 650; }
+h3 { font-size: 1.05rem; font-weight: 650; }
+p { margin: 0; }
+button, input, select, textarea { font: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+[hidden] { display: none !important; }
+.wrap { max-width: 1240px; margin: 0 auto; padding-inline: max(16px, env(safe-area-inset-left, 0px)) max(16px, env(safe-area-inset-right, 0px)); }
+.muted { color: var(--muted); }
+.eyebrow { font-family: var(--font-mono); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+
+/* top bar */
+.topbar { position: sticky; top: 0; z-index: 20; background: color-mix(in oklab, var(--bg) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.topbar .wrap { display: flex; align-items: center; gap: 24px; min-height: 64px; flex-wrap: wrap; padding-block: 8px; }
+.brand { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 800; font-size: 1.3rem; letter-spacing: -.02em; text-decoration: none; color: var(--ink); }
+.brand .mark { width: 34px; height: 38px; display: block; }
+.brand-name { display: flex; align-items: baseline; gap: 10px; }
+.brand-ar { font-family: "Reem Kufi", "Noto Kufi Arabic", "Segoe UI", Tahoma, sans-serif; font-weight: 700; font-size: 1.55rem; line-height: 1; color: var(--accent); letter-spacing: 0; }
+.brand-en { font-family: var(--font-display); font-weight: 800; font-size: 1.25rem; }
+.tabs { display: flex; gap: 4px; background: var(--surface-2); padding: 4px; border-radius: 999px; }
+.tab, .mode-btn { border: 0; background: transparent; padding: 8px 18px; border-radius: 999px; cursor: pointer; font-weight: 700; color: var(--muted); }
+.tab[aria-selected="true"], .mode-btn[aria-checked="true"] { background: var(--surface); color: var(--ink); box-shadow: var(--shadow); }
+.topbar .spacer { flex: 1; }
+.cam-pill { display: inline-flex; align-items: center; gap: 8px; font-size: .85rem; color: var(--muted); font-family: var(--font-mono); }
+.cam-pill .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--line); }
+.cam-pill.on .dot { background: var(--signal); box-shadow: 0 0 0 4px var(--signal-soft); }
+
+main { padding-block: 28px 56px; }
+.view { display: grid; gap: 24px; }
+
+/* panels and controls */
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 20px; display: grid; gap: 16px; align-content: start; min-width: 0; }
+.panel-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid var(--line); background: var(--surface); padding: 10px 16px; border-radius: 10px; cursor: pointer; font-weight: 700; min-height: 44px; transition: background .15s, border-color .15s, transform .1s; }
+.btn:hover { border-color: var(--muted); }
+.btn:active { transform: translateY(1px); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.btn.primary:hover { filter: brightness(1.05); }
+.btn.ghost { background: transparent; }
+.btn.danger { color: var(--danger); }
+.btn.small { min-height: 34px; padding: 6px 12px; font-size: .9rem; }
+.btn svg { width: 18px; height: 18px; flex: none; }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+.row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.field { display: grid; gap: 6px; font-size: .9rem; }
+.field > span { font-weight: 700; }
+.input, select.input, textarea.input { width: 100%; border: 1px solid var(--line); background: var(--bg); border-radius: 10px; padding: 10px 12px; min-height: 44px; }
+.switch { display: inline-flex; align-items: center; gap: 10px; cursor: pointer; font-size: .92rem; user-select: none; }
+.switch input { appearance: none; width: 40px; height: 24px; border-radius: 999px; background: var(--line); position: relative; cursor: pointer; transition: background .15s; flex: none; margin: 0; }
+.switch input::after { content: ""; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: var(--surface); transition: transform .15s; box-shadow: 0 1px 2px rgba(0,0,0,.2); }
+.switch input:checked { background: var(--signal); }
+.switch input:checked::after { transform: translateX(16px); }
+input[type="range"] { accent-color: var(--accent); width: 100%; }
+.chip { display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 999px; font-size: .78rem; font-weight: 700; background: var(--surface-2); color: var(--muted); white-space: nowrap; }
+.chip.signal { background: var(--signal-soft); color: var(--signal); }
+.chip.accent { background: var(--accent-soft); color: var(--ink); }
+
+/* hand illustrations */
+.hand-svg { width: 100%; height: auto; display: block; }
+.hand-svg .hl { stroke: var(--hand-line); fill: var(--hand-line); stroke-linecap: round; }
+.hand-svg .hf { stroke: var(--hand); fill: var(--hand); stroke-linecap: round; }
+.hand-svg .hp { stroke: var(--hand-palm); fill: var(--hand-palm); }
+.hand-svg .hand-arrow { stroke: var(--accent); }
+.hand-svg .hand-arrowhead { fill: var(--accent); }
+
+/* camera stage */
+/* the camera stage keeps one dark look in both themes, like a viewfinder */
+.stage { position: relative; aspect-ratio: 4 / 3; max-width: 100%; border-radius: var(--r); overflow: hidden; background: #0B1419; isolation: isolate; }
+.stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.stage .idle { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; padding: 24px; color: #EEF3F6; background:
+  radial-gradient(circle at 30% 20%, rgba(227, 148, 12, .24), transparent 55%),
+  radial-gradient(circle at 80% 90%, rgba(15, 160, 145, .26), transparent 50%), #0B1419; }
+.stage .idle-inner { display: grid; gap: 14px; justify-items: center; max-width: 380px; }
+.stage .idle .hand-wrap { width: 92px; }
+.stage .idle p { color: rgba(238, 243, 246, .78); font-size: .95rem; }
+.stage .idle h3 { color: #EEF3F6; font-size: 1.25rem; }
+.stage .badge { position: absolute; top: 12px; left: 12px; z-index: 2; }
+.stage .badge .chip { background: rgba(0,0,0,.55); color: #fff; backdrop-filter: blur(6px); }
+.stage .flash { position: absolute; inset: 0; border: 6px solid var(--signal); border-radius: var(--r); opacity: 0; pointer-events: none; transition: opacity .25s; z-index: 3; }
+.stage .flash.show { opacity: 1; transition: none; }
+.stage .count { position: absolute; inset: 0; display: grid; place-items: center; font: 800 6rem var(--font-display); color: #fff; text-shadow: 0 4px 30px rgba(0,0,0,.5); z-index: 3; pointer-events: none; }
+.stage .rec { position: absolute; top: 12px; right: 12px; z-index: 3; }
+.stage .rec .chip { background: var(--danger); color: #fff; }
+
+/* translate */
+.mode-bar { display: flex; align-items: center; gap: 12px 16px; flex-wrap: wrap; }
+.mode-bar .tabs { background: var(--surface); border: 1px solid var(--line); }
+.mode-bar .mode-btn[aria-checked="true"] { background: var(--accent); color: var(--on-accent); box-shadow: none; }
+.mode-desc { font-size: .92rem; }
+.demo-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.demo-steps li { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 12px; align-items: center; padding: 8px 12px 8px 8px; border-radius: 12px; border: 1px solid var(--line); background: var(--bg); transition: border-color .2s, background .2s; }
+.demo-steps li.hit { border-color: var(--signal); background: var(--signal-soft); box-shadow: 0 0 0 3px var(--signal); }
+.demo-steps .art { width: 64px; background: var(--surface); border-radius: 10px; padding: 2px; }
+.demo-steps b { font-family: var(--font-display); font-size: 1.1rem; display: block; }
+.demo-steps span { font-size: .88rem; color: var(--muted); display: block; }
+.demo-note { font-size: .85rem; color: var(--muted); border-left: 3px solid var(--accent); padding-left: 10px; }
+.tr-grid { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr); gap: 24px; align-items: start; }
+.cam-col, .out-col { display: grid; gap: 16px; min-width: 0; }
+.readout { display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: center; }
+.ring { position: relative; width: 84px; height: 84px; flex: none; }
+.ring svg { position: absolute; inset: 0; transform: rotate(-90deg); }
+.ring circle { fill: none; stroke-width: 7; }
+.ring .track { stroke: var(--surface-2); }
+.ring .prog { stroke: var(--signal); stroke-linecap: round; transition: stroke-dashoffset .08s linear; }
+.ring .glyph { position: absolute; inset: 0; display: grid; place-items: center; font: 800 2.2rem/1 var(--font-display); }
+.ring .glyph.long { font-size: .78rem; text-align: center; padding: 8px; line-height: 1.1; }
+.seen-text { display: grid; gap: 2px; min-width: 0; }
+.seen-text strong { font-family: var(--font-display); font-size: 1.25rem; }
+.seen-text small { color: var(--muted); }
+.settings { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px 20px; }
+.settings .field small { color: var(--muted); font-family: var(--font-mono); font-size: .78rem; }
+
+.spell-line { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; padding: 14px 16px; background: var(--surface-2); border-radius: 12px; min-height: 76px; }
+.spell-line .lbl { font-family: var(--font-mono); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.cur-word { font: 700 2.2rem/1 var(--font-mono); letter-spacing: .14em; min-width: 0; overflow-wrap: anywhere; }
+.cur-word .caret { display: inline-block; width: 3px; height: .95em; background: var(--accent); vertical-align: -0.1em; margin-left: 4px; animation: blink 1.1s steps(1) infinite; }
+.cur-word .empty { font: 400 1rem var(--font-body); letter-spacing: 0; color: var(--muted); }
+@keyframes blink { 50% { opacity: 0; } }
+.suggest { display: flex; gap: 8px; flex-wrap: wrap; min-height: 34px; }
+.suggest button { border: 1px dashed var(--line); background: transparent; border-radius: 999px; padding: 4px 14px; cursor: pointer; font-family: var(--font-mono); font-weight: 600; text-transform: uppercase; letter-spacing: .06em; }
+.suggest button:hover { border-style: solid; border-color: var(--accent); }
+.sentence { font: 500 1.35rem/1.5 var(--font-body); min-height: 132px; resize: vertical; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.actions .btn.primary { flex: 1 1 160px; }
+.voice-row { display: grid; grid-template-columns: auto 1fr 1fr; gap: 14px; align-items: end; }
+.reply-display { font: 700 clamp(1.4rem, 3vw, 2rem)/1.3 var(--font-display); min-height: 64px; padding: 16px; border-radius: 12px; background: var(--signal-soft); overflow-wrap: anywhere; }
+.reply-display.empty { font: 400 1rem var(--font-body); color: var(--muted); background: var(--surface-2); }
+.reply-controls { display: grid; grid-template-columns: auto 1fr auto; gap: 8px; }
+.btn.listening { background: var(--danger); border-color: var(--danger); color: #fff; }
+.kbd { font-family: var(--font-mono); font-size: .75rem; padding: 1px 6px; border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 5px; background: var(--bg); }
+
+.notice { display: flex; gap: 12px; align-items: flex-start; padding: 14px 16px; border-radius: 12px; background: var(--accent-soft); font-size: .93rem; }
+.notice.err { background: color-mix(in oklab, var(--danger) 16%, var(--surface)); }
+footer { border-top: 1px solid var(--line); padding-block: 24px 40px; color: var(--muted); font-size: .88rem; }
+footer .wrap { display: flex; gap: 16px 32px; flex-wrap: wrap; justify-content: space-between; }
+footer p { max-width: 70ch; }
+
+.toast { position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translate(-50%, 20px); background: var(--ink); color: var(--bg); padding: 10px 18px; border-radius: 999px; font-weight: 700; opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; z-index: 50; }
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+@media (max-width: 900px) {
+  .tr-grid, .signs-grid, .practice, .learn-top { grid-template-columns: minmax(0, 1fr); }
+  .quiz, .spell-stage { grid-template-columns: minmax(0, 1fr); }
+  .quiz .q-art, .spell-stage .now-art { max-width: 280px; }
+  .detail { grid-template-columns: minmax(0, 1fr); }
+  .detail .big-art { max-width: 240px; }
+  .sign-player { grid-template-columns: minmax(0, 120px) minmax(0, 1fr); }
+}
+@media (max-width: 560px) {
+  .voice-row { grid-template-columns: 1fr; }
+  .reply-controls { grid-template-columns: 1fr auto; }
+  .reply-controls .btn:first-child { grid-column: 1 / -1; }
+  .tab { padding: 8px 12px; }
+  .cur-word { font-size: 1.7rem; }
+  .ai-key { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+
+/* ID renewal */
+.hero { display: grid; gap: 8px; max-width: 72ch; }
+.hero p { color: var(--muted); }
+.sign-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.sign-steps li { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 8px 12px 8px 8px; border-radius: 12px; border: 1px solid var(--line); background: var(--bg); transition: border-color .2s, background .2s, box-shadow .2s; }
+.sign-steps li.done { border-color: var(--signal); background: var(--signal-soft); }
+.sign-steps li.next { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.sign-steps li.hit { box-shadow: 0 0 0 3px var(--signal); }
+.sign-steps .arts { display: flex; gap: 4px; }
+.sign-steps .art { width: 64px; background: var(--surface); border-radius: 10px; padding: 2px; }
+.sign-steps b { font-family: var(--font-display); font-size: 1.15rem; display: block; }
+.sign-steps .how { font-size: .88rem; color: var(--muted); display: block; }
+.sign-steps .tag { font-family: var(--font-mono); font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
+.demo-note { font-size: .85rem; color: var(--muted); border-left: 3px solid var(--accent); padding-left: 10px; }
+.message { font: 700 clamp(1.7rem, 3.6vw, 2.5rem)/1.25 var(--font-display); min-height: 104px; padding: 16px; border-radius: 12px; background: var(--surface-2); overflow-wrap: anywhere; display: flex; align-items: center; }
+.message.empty { font: 400 1rem var(--font-body); color: var(--muted); }
+.message.complete { background: var(--signal-soft); }
+.msg-status { min-height: 1.5em; font-size: .95rem; color: var(--muted); }
+.msg-status.warn { color: var(--danger); font-weight: 700; }
+@media (max-width: 900px) {
+  .tr-grid { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 560px) {
+  .sign-steps li { grid-template-columns: minmax(0, 1fr) auto; }
+  .sign-steps .arts { grid-column: 1 / -1; }
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="#" aria-label="Harakah home"><span class="mark" id="brandMark"></span><span class="brand-name"><span class="brand-ar" lang="ar" dir="rtl">حركه</span><span class="brand-en">Harakah</span></span></a>
+    <span class="spacer"></span>
+    <span class="cam-pill" id="camPill"><span class="dot"></span><span id="camPillText">Camera off</span></span>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="view" aria-labelledby="pageTitle">
+    <div class="hero">
+      <span class="eyebrow">Sign to speech · ID services</span>
+      <h1 id="pageTitle">Renew my ID</h1>
+      <p>Sign six signs to the camera: <b>I</b>, <b>want</b>, <b>to</b>, <b>renew</b>, <b>my</b>, <b>ID</b>. Harakah shows the sentence and says it out loud for the person helping you. They can answer by voice or typing, and their reply appears in large text.</p>
+    </div>
+    <div id="envNotice"></div>
+    <div class="tr-grid">
+      <div class="cam-col">
+        <div class="stage" data-stage="translate"></div>
+        <div class="panel">
+          <div class="readout">
+            <div class="ring" aria-hidden="true">
+              <svg viewBox="0 0 84 84"><circle class="track" cx="42" cy="42" r="36"/><circle class="prog" id="ringProg" cx="42" cy="42" r="36" stroke-dasharray="226.2" stroke-dashoffset="226.2"/></svg>
+              <div class="glyph" id="seenGlyph">–</div>
+            </div>
+            <div class="seen-text" aria-live="polite">
+              <span class="eyebrow">Seeing</span>
+              <strong id="seenName">No hand yet</strong>
+              <small id="seenHint">Hold each sign still until the ring fills.</small>
+            </div>
+          </div>
+          <div class="settings">
+            <label class="field"><span>Hold time</span><input type="range" id="setHold" min="300" max="1500" step="50"><small id="setHoldVal"></small></label>
+            <label class="switch"><input type="checkbox" id="setHints"> Show hand tracking</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="out-col">
+        <div class="panel">
+          <div class="panel-head"><h2>Your message</h2><span class="chip" id="stepChip">0 / 6</span></div>
+          <div class="message empty" id="message" aria-live="polite">Your signed message appears here.</div>
+          <p class="msg-status" id="msgStatus" aria-live="polite"></p>
+          <div class="actions">
+            <button class="btn primary" id="btnSpeak"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a10 10 0 0 1 0 14"/></svg>Speak</button>
+            <button class="btn" id="btnUndo">⌫ Undo</button>
+            <button class="btn" id="btnCopy">Copy</button>
+            <button class="btn ghost" id="btnClear">Start over</button>
+          </div>
+          <div class="voice-row">
+            <label class="switch"><input type="checkbox" id="setAutoSpeak"> Speak when finished</label>
+            <label class="field"><span>Voice</span><select class="input" id="setVoice"></select></label>
+            <label class="field"><span>Speed</span><input type="range" id="setRate" min="0.6" max="1.6" step="0.1"></label>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head"><h2>The six signs</h2></div>
+          <p class="muted">Make them in this order, one after another. Tap <b>Add</b> on a card if the camera misses one.</p>
+          <ol class="sign-steps" id="signSteps"></ol>
+          <p class="demo-note">These are easy one-handed handshapes chosen so the camera can tell them apart. They are not standard ASL. Hold each one still for a moment, with your palm toward the camera. Either hand works.</p>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head"><h2>Their reply</h2><span class="chip">Speech or typing</span></div>
+          <p class="muted">The person helping you can answer out loud or type. Their words appear here in large text.</p>
+          <div class="reply-display empty" id="replyText" aria-live="polite">Nothing yet.</div>
+          <div class="reply-controls">
+            <button class="btn" id="btnListen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg><span>Listen</span></button>
+            <input class="input" id="replyInput" placeholder="Or type a reply" aria-label="Type a reply">
+            <button class="btn" id="btnReplyShow">Show</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Harakah reads six one-handed signs from your camera and turns them into the sentence “I want to renew my ID.” It is a helper, not a certified interpreter: if something is unclear, use the Add buttons or ask for an interpreter.</p>
+    <p>Video never leaves your device. The hand-tracking model (Google MediaPipe) downloads once when you start the camera.</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+/* HandArt: a small 3D hand model drawn as flat illustrations.
+   Model space: millimetres, x to the viewer's right, y up, z toward the viewer.
+   A right hand, palm toward the viewer, seen as in a mirror (thumb on the left). */
+const HandArt = (() => {
+  const R = Math.PI / 180;
+  const FINGERS = {
+    index:  { mcp: [-27, 100, 0], len: [38, 24, 20], w: 17 },
+    middle: { mcp: [-5, 107, 0],  len: [42, 27, 21], w: 17.5 },
+    ring:   { mcp: [17, 104, 0],  len: [39, 25, 20], w: 16.5 },
+    pinky:  { mcp: [37, 94, 0],   len: [30, 19, 17], w: 14.5 },
+  };
+  const ORDER = ['index', 'middle', 'ring', 'pinky'];
+  const THUMB = { cmc: [-27, 26, 8], len: [31, 27, 23], w: 19 };
+  const PALM = [[-21, -4, 0], [22, -4, 0], [42, 28, 0], [45, 90, 0], [36, 102, 0], [17, 109, 0],
+                [-5, 112, 0], [-27, 105, 0], [-37, 92, 0], [-39, 58, 0], [-33, 26, 0]];
+
+  // Joint flexion (degrees at MCP, PIP, DIP) toward the palm.
+  const CURL = {
+    ext: [0, 0, 0], flat: [56, 14, 8], half: [30, 42, 28], o: [42, 62, 48], touch: [50, 70, 45], hook: [6, 88, 62],
+    fist: [92, 102, 72], tight: [40, 112, 78], bent: [62, 22, 12], kmid: [14, 0, 0],
+  };
+  const SPLAY = { index: -3, middle: 0, ring: 3, pinky: 7 };
+  // Thumb bones as [azimuth from +y toward +x, elevation toward viewer] per bone.
+  const THUMBS = {
+    side:       [[-14, 28], [-5, 14], [2, 6]],
+    out:        [[-50, 6], [-74, 0], [-84, 0]],
+    up:         [[-28, 8], [-18, 4], [-12, 2]],
+    acrossLow:  [[-2, 20], [40, 35], [88, 5]],
+    acrossFist: [[-10, 15], [30, 45], [72, 10]],
+    tuckT:      [[-8, 12], [22, 18], [20, 0]],
+    tuckN:      [[4, 12], [34, 18], [38, 0]],
+    tuckM:      [[8, 5], [38, 15], [62, 0]],
+    underE:     [[-4, 18], [45, 30], [88, 8]],
+    oppose:     [[-8, 35], [0, 45], [5, 35]],
+    openC:      [[-22, 34], [-6, 50], [14, 58]],
+    toMiddle:   [[-2, 35], [25, 45], [40, 30]],
+    toIndexF:   [[-8, 35], [0, 45], [5, 35]],
+    betweenK:   [[-6, 25], [8, 30], [12, 15]],
+    alongG:     [[-24, 34], [-8, 20], [-2, 15]],
+    toPinky:    [[0, 15], [50, 30], [80, 10]],
+  };
+
+  const LETTERS = {
+    // the six ID-renewal signs (one hand each; ID is the letters I then D)
+    B: { c: 'ext', th: 'acrossLow' },                                             // my: flat hand
+    D: { c: { index: 'ext', middle: 'touch', ring: 'touch', pinky: 'touch' }, th: 'toMiddle', view: { yaw: 18 } },
+    I: { c: { index: 'fist', middle: 'fist', ring: 'fist', pinky: 'ext' }, th: 'acrossFist' },
+    ME: { c: { index: 'ext', middle: 'fist', ring: 'fist', pinky: 'fist' }, th: 'acrossFist', view: { roll: 62, pitch: -20 } },   // I
+    WANT: { c: 'ext', splay: { index: -14, middle: 0, ring: 12, pinky: 26 }, th: 'out' },
+    V: { c: { index: 'ext', middle: 'ext', ring: 'fist', pinky: 'fist' }, splay: { index: -13, middle: 12 }, th: 'acrossFist' },
+    A: { c: 'fist', th: 'side' },
+    THIS: { c: { index: 'ext', middle: 'fist', ring: 'fist', pinky: 'fist' }, th: 'acrossFist', view: { roll: 180, yaw: 20 }, arrow: 'tap' },   // to
+    BUILT: { c: 'fist', th: 'acrossFist', arrow: 'twist' },                          // renew
+    // only used for the logo in the top bar
+    ILY: { c: { index: 'ext', middle: 'fist', ring: 'fist', pinky: 'ext' }, splay: { index: -6, pinky: 18 }, th: 'out' },
+  };
+
+  const add = (a, b) => [a[0] + b[0], a[1] + b[1], a[2] + b[2]];
+  const mul = (a, s) => [a[0] * s, a[1] * s, a[2] * s];
+
+  function rotate(p, v) {
+    let [x, y, z] = p;
+    const rl = (v.roll || 0) * R, yw = (v.yaw || 0) * R, pt = (v.pitch || 0) * R;
+    // roll about z (positive = counter-clockwise on screen)
+    [x, y] = [x * Math.cos(rl) - y * Math.sin(rl), x * Math.sin(rl) + y * Math.cos(rl)];
+    // yaw about y (positive brings the thumb side toward the viewer)
+    [x, z] = [x * Math.cos(yw) + z * Math.sin(yw), -x * Math.sin(yw) + z * Math.cos(yw)];
+    // pitch about x (positive tips the fingertips toward the viewer)
+    [y, z] = [y * Math.cos(pt) - z * Math.sin(pt), y * Math.sin(pt) + z * Math.cos(pt)];
+    return [x, y, z];
+  }
+
+  function curlFor(spec, name) {
+    if (spec.flex && spec.flex[name]) return spec.flex[name];
+    const c = typeof spec.c === 'string' ? spec.c : spec.c[name];
+    return CURL[c] || CURL.ext;
+  }
+
+  // Build the 21 joints (MediaPipe order) in model space, then apply the view.
+  function joints(spec) {
+    const pts = new Array(21);
+    pts[0] = [0, 0, 0];
+    const tb = THUMBS[spec.th] || THUMBS.side;
+    let p = THUMB.cmc.slice();
+    pts[1] = p;
+    tb.forEach(([az, el], i) => {
+      const a = az * R, e = el * R;
+      p = add(p, mul([Math.sin(a) * Math.cos(e), Math.cos(a) * Math.cos(e), Math.sin(e)], THUMB.len[i]));
+      pts[2 + i] = p;
+    });
+    ORDER.forEach((name, fi) => {
+      const f = FINGERS[name];
+      const sp = ((spec.splay && spec.splay[name] != null) ? spec.splay[name] : SPLAY[name]) * R;
+      const u = [Math.sin(sp), Math.cos(sp), 0], n = [0, 0, 1];
+      const flex = curlFor(spec, name);
+      let q = f.mcp.slice(), phi = 0;
+      const base = 5 + fi * 4;
+      pts[base] = q;
+      for (let i = 0; i < 3; i++) {
+        phi += flex[i] * R;
+        q = add(q, mul(add(mul(u, Math.cos(phi)), mul(n, Math.sin(phi))), f.len[i]));
+        pts[base + 1 + i] = q;
+      }
+    });
+    const v = spec.view || {};
+    return pts.map(pt => rotate(pt, v));
+  }
+
+  const ARROWS = {
+    J: [[64, 168, 30], [70, 120, 30], [64, 82, 30], [40, 72, 30], [26, 88, 30]],
+    Z: [[-58, 214, 20], [-4, 214, 20], [-58, 168, 20], [-4, 168, 20]],
+    out: [[58, 200, 0], [110, 214, 0]],
+    in: [[-10, 240, 0], [-10, 300, 0]],
+    up: [[-75, 70, 30], [-82, 130, 30]],
+    twist: [[-58, 150, 30], [0, 182, 30], [58, 150, 30]],
+    tap: [[-20, 190, 0], [-20, 225, 0]],
+    chin: [[-52, 246, 0], [-52, 205, 0]],
+    thanks: [[64, 190, 0], [96, 150, 0], [92, 92, 0]],
+    wave: [[-62, 222, 0], [-4, 246, 0], [58, 222, 0]],
+    pull: [[64, 230, 0], [64, 150, 0]],
+  };
+
+  // Primitives in model space (after view), sorted back to front.
+  function primitives(spec) {
+    const J = joints(spec);
+    const v = spec.view || {};
+    const prims = [];
+    const palm = PALM.map(p => rotate(p, v));
+    const arm = [[0, -6, 0], [0, -60, 0]].map(p => rotate(p, v));
+    prims.push({ t: 'arm', a: arm[0], b: arm[1], w: 46, z: -1e9 });
+    const pz = palm.reduce((s, p) => s + p[2], 0) / palm.length;
+    prims.push({ t: 'palm', pts: palm, z: -1e8 + 1 });
+    const chains = [[1, 2, 3, 4, THUMB.w, 'thumb']];
+    ORDER.forEach((name, fi) => { const b = 5 + fi * 4; chains.push([b, b + 1, b + 2, b + 3, FINGERS[name].w, name]); });
+    chains.forEach(([a, b, c, d, w, name]) => {
+      const seq = [a, b, c, d];
+      for (let i = 0; i < 3; i++) {
+        const p = J[seq[i]], q = J[seq[i + 1]];
+        const ww = w * (1 - i * 0.06);
+        // the first bone of a finger starts inside the palm; push it slightly behind
+        const z = (p[2] + q[2]) / 2 + (i === 0 && name !== 'thumb' ? -0.4 : 0) + i * 0.05;
+        if (i === 0 && name === 'thumb') { prims.push({ t: 'thenar', a: p, b: q, w: 25, z: -1e8 }); continue; }
+        prims.push({ t: 'bone', a: p, b: q, w: ww, z, name, tip: i === 2 });
+      }
+    });
+    prims.sort((x, y) => x.z - y.z);
+    if (spec.arrow) prims.push({ t: 'arrow', pts: ARROWS[spec.arrow].map(p => rotate(p, v)), both: spec.arrow === 'wave' });
+    return { prims, joints: J };
+  }
+
+  let uid = 0;
+  function svg(key, opts = {}) {
+    const spec = typeof key === 'string' ? LETTERS[key] : key;
+    if (!spec) return '';
+    const { prims } = primitives(spec);
+    // fit: bounding box of hand (not forearm), in screen coords (y flipped)
+    let x0 = 1e9, x1 = -1e9, y0 = 1e9, y1 = -1e9;
+    const grow = (p, r) => { x0 = Math.min(x0, p[0] - r); x1 = Math.max(x1, p[0] + r); y0 = Math.min(y0, -p[1] - r); y1 = Math.max(y1, -p[1] + r); };
+    prims.forEach(pr => {
+      if (pr.t === 'bone' || pr.t === 'thenar') { grow(pr.a, pr.w / 2 + 2); grow(pr.b, pr.w / 2 + 2); }
+      else if (pr.t === 'palm') pr.pts.forEach(p => grow(p, 9));
+      else if (pr.t === 'arrow') pr.pts.forEach(p => grow(p, 8));
+    });
+    const pad = 10, W = opts.w || 200, H = opts.h || 220;
+    const s = Math.min((W - pad * 2) / (x1 - x0), (H - pad * 2) / (y1 - y0), (opts.maxScale || 1.12) * W / 200);
+    const ox = (W - (x1 - x0) * s) / 2 - x0 * s, oy = (H - (y1 - y0) * s) / 2 - y0 * s;
+    const P = p => [(p[0] * s + ox).toFixed(1), (-p[1] * s + oy).toFixed(1)];
+    const id = 'h' + (++uid);
+    const lw = Math.max(2.2, 3.2 * s);
+    let out = `<svg viewBox="0 0 ${W} ${H}" class="hand-svg" role="img" aria-label="${opts.label || ''}">`;
+    const armPr = prims.find(pr => pr.t === 'arm');
+    const [gx1, gy1] = P(armPr.a), [gx2, gy2] = P(armPr.b);
+    out += `<defs><linearGradient id="${id}g" gradientUnits="userSpaceOnUse" x1="${gx1}" y1="${gy1}" x2="${gx2}" y2="${gy2}"><stop offset="0.15" stop-color="#fff" stop-opacity="1"/><stop offset="0.85" stop-color="#fff" stop-opacity="0"/></linearGradient>`;
+    out += `<mask id="${id}m"><rect x="0" y="0" width="${W}" height="${H}" fill="url(#${id}g)"/></mask>`;
+    out += `<marker id="${id}a" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="hand-arrowhead"/></marker></defs>`;
+    prims.forEach(pr => {
+      if (pr.t === 'arm') {
+        const [ax, ay] = P(pr.a), [bx, by] = P(pr.b);
+        out += `<g class="hand-arm"><line x1="${ax}" y1="${ay}" x2="${bx}" y2="${by}" stroke-width="${(pr.w * s + lw).toFixed(1)}" class="hl"/><line x1="${ax}" y1="${ay}" x2="${bx}" y2="${by}" stroke-width="${(pr.w * s).toFixed(1)}" class="hf hp"/></g>`;
+      } else if (pr.t === 'palm') {
+        // palm and thumb base share one silhouette: both outlines, then both fills
+        const th = prims.find(x => x.t === 'thenar');
+        const d = pr.pts.map(P).map(q => q.join(',')).join(' ');
+        const [tx1, ty1] = P(th.a), [tx2, ty2] = P(th.b);
+        out += `<polygon points="${d}" class="hl" stroke-width="${(14 * s + lw).toFixed(1)}" stroke-linejoin="round"/>`;
+        out += `<line x1="${tx1}" y1="${ty1}" x2="${tx2}" y2="${ty2}" stroke-width="${(th.w * s + lw).toFixed(1)}" class="hl"/>`;
+        out += `<polygon points="${d}" class="hf hp" stroke-width="${(14 * s).toFixed(1)}" stroke-linejoin="round"/>`;
+        out += `<line x1="${tx1}" y1="${ty1}" x2="${tx2}" y2="${ty2}" stroke-width="${(th.w * s).toFixed(1)}" class="hf hp"/>`;
+      } else if (pr.t === 'bone') {
+        const [ax, ay] = P(pr.a), [bx, by] = P(pr.b);
+        out += `<line x1="${ax}" y1="${ay}" x2="${bx}" y2="${by}" stroke-width="${(pr.w * s + lw).toFixed(1)}" class="hl"/>`;
+        out += `<line x1="${ax}" y1="${ay}" x2="${bx}" y2="${by}" stroke-width="${(pr.w * s).toFixed(1)}" class="hf"/>`;
+      } else if (pr.t === 'arrow') {
+        const pts = pr.pts.map(P);
+        let d = `M${pts[0].join(' ')}`;
+        if (pts.length === 3) d += ` Q${pts[1].join(' ')} ${pts[2].join(' ')}`;
+        else if (pts.length === 5) d += ` C${pts[1].join(' ')} ${pts[2].join(' ')} ${pts[3].join(' ')}` + ` S${pts[4].join(' ')} ${pts[4].join(' ')}`;
+        else d += pts.slice(1).map(q => ` L${q.join(' ')}`).join('');
+        out += `<path d="${d}" class="hand-arrow" stroke-width="${Math.max(3, 5 * s).toFixed(1)}" marker-end="url(#${id}a)"${pr.both ? ` marker-start="url(#${id}a)"` : ''} fill="none" stroke-linejoin="round" stroke-linecap="round"/>`;
+      }
+    });
+    out += `</svg>`;
+    // mask the forearm so it fades out
+    out = out.replace('<g class="hand-arm">', `<g class="hand-arm" mask="url(#${id}m)">`);
+    return out;
+  }
+
+  return { LETTERS, joints, primitives, svg };
+})();
+// node export
+if (typeof module !== 'undefined') module.exports = HandArt;
+
+</script>
+<script>
+/* SignRecognizer: turns MediaPipe hand landmarks into ASL fingerspelling letters.
+   Input "W" = 21 world landmarks {x,y,z} in metres (y down, z away from camera).
+   Rules use joint angles and positions in the hand's own frame, so they work
+   for left or right hands and at any distance from the camera. */
+const SignRecognizer = (() => {
+  const D = 180 / Math.PI;
+  const v = (a, b) => [b.x - a.x, b.y - a.y, b.z - a.z];
+  const dot = (a, b) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+  const len = a => Math.hypot(a[0], a[1], a[2]);
+  const norm = a => { const l = len(a) || 1; return [a[0] / l, a[1] / l, a[2] / l]; };
+  const ang = (a, b) => Math.acos(Math.max(-1, Math.min(1, dot(norm(a), norm(b))))) * D;
+  const FINGERS = [[5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16], [17, 18, 19, 20]];
+  const NAMES = ['index', 'middle', 'ring', 'pinky'];
+
+  function analyze(W) {
+    const P = len(v(W[0], W[9])) || 1e-6;          // palm length
+    const nd = (a, b) => len(v(W[a], W[b])) / P;    // normalised distance
+    // palm frame: Y up the palm, X across from index to pinky
+    const Y = norm(v(W[0], W[9]));
+    let X = v(W[5], W[17]);
+    X = norm([X[0] - Y[0] * dot(X, Y), X[1] - Y[1] * dot(X, Y), X[2] - Y[2] * dot(X, Y)]);
+    const across = dot(v(W[5], W[17]), X) || 1e-6;
+    const uv = i => [dot(v(W[5], W[i]), X) / across, dot(v(W[0], W[i]), Y) / P];
+
+    const fingers = FINGERS.map(([m, p, d, t]) => {
+      const b0 = v(W[0], W[m]), b1 = v(W[m], W[p]), b2 = v(W[p], W[d]), b3 = v(W[d], W[t]);
+      const mcp = ang(b0, b1), pip = ang(b1, b2), dip = ang(b2, b3);
+      const bend = mcp + pip + dip;
+      const state = bend < 70 ? 'E' : bend < 185 ? 'H' : 'C';
+      return { mcp, pip, dip, bend, state, dir: norm(v(W[m], W[t])) };
+    });
+    const tb = [v(W[1], W[2]), v(W[2], W[3]), v(W[3], W[4])];
+    const thumbBend = ang(tb[0], tb[1]) + ang(tb[1], tb[2]);
+    const thumbDir = norm(v(W[2], W[4]));
+    const tuv = uv(4);
+    const thumbOpen = ang(thumbDir, Y);              // 0 = along the palm, 90 = sticking out
+    const thumbOut = thumbOpen > 42 && nd(4, 5) > 0.62 && tuv[0] < 0.05;
+    return {
+      P, nd, uv, fingers, states: fingers.map(f => f.state).join(''),
+      thumbBend, thumbOpen, thumbOut, tu: tuv[0], tv: tuv[1],
+    };
+  }
+
+  // pointing direction of a finger in camera space: 'up' | 'down' | 'side' | 'forward'
+  function pointing(W, a, b) {
+    const d = norm(v(W[a], W[b]));
+    if (-d[1] > 0.62) return 'up';
+    if (d[1] > 0.45) return 'down';
+    if (Math.abs(d[0]) > 0.6) return 'side';
+    return 'forward';
+  }
+
+  function classify(W) {
+    const A = analyze(W);
+    const [i, m, r, p] = A.fingers.map(f => f.state);
+    const E = s => s === 'E', notE = s => s !== 'E';
+    const nd = A.nd;
+
+    // all four fingers straight
+    if (E(i) && E(m) && E(r) && E(p)) {
+      if (!A.thumbOut && A.tu > -0.15) return 'B';
+      return null; // open hand, not a letter
+    }
+    if (E(i) && E(m) && E(r) && notE(p)) return 'W';
+    if (notE(i) && E(m) && E(r) && E(p)) return nd(4, 8) < 0.5 ? 'F' : null;
+    if (E(p) && notE(m) && notE(r)) {
+      if (E(i)) return A.thumbOut ? 'ILY' : null;
+      return A.thumbOut ? 'Y' : 'I';
+    }
+    if (E(i) && E(m) && notE(r) && notE(p)) {
+      const ui = A.uv(8)[0], um = A.uv(12)[0], bi = A.uv(5)[0], bm = A.uv(9)[0];
+      if ((ui - um) * (bi - bm) < 0 && Math.abs(ui - um) > 0.06) return 'R';
+      const dir = pointing(W, 9, 12);
+      const spread = Math.acos(Math.max(-1, Math.min(1, dot(A.fingers[0].dir, A.fingers[1].dir)))) * D;
+      const thumbUp = A.tv > 0.84 && A.tu > -0.25 && A.tu < 0.55 && nd(4, 10) < 0.8;
+      if (dir === 'down') return 'P';
+      if (dir === 'side') return 'H';
+      if (spread > 16) return thumbUp ? 'K' : 'V';
+      return 'U';
+    }
+    if (E(i) && notE(m) && notE(r) && notE(p)) {
+      const dir = pointing(W, 5, 8);
+      if (dir === 'down') return 'Q';
+      if (dir === 'side') return 'G';
+      if (A.thumbOut) return 'L';
+      if (nd(4, 12) < 0.62 || nd(4, 16) < 0.62) return 'D';
+      return 'POINT'; // index finger alone (used for Z)
+    }
+    // no fingers straight
+    const fi = A.fingers[0];
+    if (fi.state === 'H' && fi.mcp < 45 && fi.pip > 55 && notE(m) && A.fingers[1].bend > 185 && nd(4, 8) > 0.3) return 'X';
+    const halfCount = A.fingers.filter(f => f.state === 'H').length;
+    const tipsV = (A.uv(8)[1] + A.uv(12)[1] + A.uv(16)[1]) / 3;
+    if (halfCount >= 3) {
+      if (nd(4, 8) < 0.42) return 'O';
+      if (nd(4, 8) < 1.3) return 'C';
+    }
+    if (A.tu < 0.0 && A.tv > 0.62 && A.thumbOpen < 40) return 'A';
+    if (tipsV > A.tv + 0.05 && A.tv < 0.8 && A.tu > 0.0) return 'E';
+    if (A.tv > 0.8) {
+      if (A.tu < 0.3) return 'T';
+      if (A.tu < 0.56) return 'N';
+      return 'M';
+    }
+    if (A.tu < 0.0) return 'A';
+    return 'S';
+  }
+
+
+  /* ---------- the six ID-renewal signs ----------
+     "I want to renew my ID" is read from one hand. Each sign has a handshape
+     that none of the others use, so the camera never has to guess between them:
+       I      one finger up          want   open hand, fingers spread
+       to     two fingers up (V)     renew  fist
+       my     flat hand              ID     pinky up                 */
+  const clamp01 = x => Math.max(0, Math.min(1, x));
+
+  function idClassify(W, img) {
+    const shape = classify(W);
+    const A = analyze(W);
+    const [i, m, r, p] = A.fingers.map(f => f.state);
+    const anyStraight = [i, m, r, p].includes('E');
+    const halfCount = [i, m, r, p].filter(s => s === 'H').length;
+    const avgBend = A.fingers.reduce((s, f) => s + f.bend, 0) / 4;
+    if (shape === 'I' || shape === 'Y') return 'ID';                       // pinky up
+    if (i === 'E' && m === 'E' && r === 'E' && p === 'E') {                // all four fingers up
+      const spread = Math.acos(Math.max(-1, Math.min(1, dot(A.fingers[0].dir, A.fingers[3].dir)))) * D;
+      if (spread > 22 || A.thumbOut) return 'WANT';                        // open hand, fingers spread
+      return 'MY';                                                         // flat hand, fingers together
+    }
+    if (i === 'E' && m === 'E' && r !== 'E' && p !== 'E') return 'TO';     // two fingers up (V)
+    if (i === 'E' && m !== 'E' && r !== 'E' && p !== 'E') return 'I';      // one finger up
+    if (!anyStraight) {
+      if (avgBend >= 165) return 'RENEW';                                  // fist
+    }
+    return null;
+  }
+
+  return { analyze, classify, pointing, idClassify };
+})();
+// node export
+if (typeof module !== 'undefined') module.exports = SignRecognizer;
+
+</script>
+
+<script type="module">
+/* Harakah: sign "I want to renew my ID" to the camera and have it spoken. */
+const MP_VERSION = '0.10.14';
+const MP_BUNDLE = `https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@${MP_VERSION}/vision_bundle.mjs`;
+const MP_WASM = `https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@${MP_VERSION}/wasm`;
+const MP_MODEL = 'https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task';
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+/* ---------- storage ---------- */
+const store = {
+  get(k, d) { try { const v = localStorage.getItem('harakah.' + k); return v == null ? d : JSON.parse(v); } catch { return d; } },
+  set(k, v) { try { localStorage.setItem('harakah.' + k, JSON.stringify(v)); return true; } catch { return false; } },
+};
+const settings = Object.assign({ hold: 600, hints: true, autoSpeak: true, voice: '', rate: 1 }, store.get('settings2', {}));
+const saveSettings = () => store.set('settings2', settings);
+
+let toastTimer;
+function toast(msg) {
+  const t = $('#toast'); t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+/* ---------- speech out ---------- */
+const canSpeak = 'speechSynthesis' in window;
+let voices = [];
+function loadVoices() {
+  if (!canSpeak) return;
+  voices = speechSynthesis.getVoices();
+  const sel = $('#setVoice');
+  const en = voices.filter(v => /^en/i.test(v.lang));
+  const list = en.length ? en : voices;
+  sel.innerHTML = '<option value="">Default voice</option>' + list.map(v => `<option value="${esc(v.voiceURI)}">${esc(v.name)} (${esc(v.lang)})</option>`).join('');
+  sel.value = settings.voice;
+}
+function speak(text) {
+  if (!canSpeak || !text || !text.trim()) return;
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  const v = voices.find(x => x.voiceURI === settings.voice);
+  if (v) { u.voice = v; u.lang = v.lang; } else u.lang = 'en-US';
+  u.rate = settings.rate;
+  speechSynthesis.speak(u);
+}
+
+/* ---------- the six signs ---------- */
+const SEQUENCE = [
+  { key: 'I',     word: 'I',     art: ['ME'],   how: 'Hold up one finger (index).' },
+  { key: 'WANT',  word: 'want',  art: ['WANT'], how: 'Open your hand wide, fingers spread apart.' },
+  { key: 'TO',    word: 'to',    art: ['V'],    how: 'Hold up two fingers in a V.' },
+  { key: 'RENEW', word: 'renew', art: ['A'],    how: 'Close your hand in a fist.' },
+  { key: 'MY',    word: 'my',    art: ['B'],    how: 'Hold your hand flat, fingers together.' },
+  { key: 'ID',    word: 'ID',    art: ['I'],    how: 'Hold up only your little finger (pinky).' },
+];
+const BY = Object.fromEntries(SEQUENCE.map(s => [s.key, s]));
+const FULL = SEQUENCE.map(s => s.word);
+
+let said = [];                                   // words signed so far
+let last = { key: null, at: -1e9 };              // stops one sign counting twice
+let dm = { key: null, since: 0, done: false };   // the sign being held right now
+
+const prefixLen = () => { let n = 0; while (n < said.length && n < FULL.length && said[n] === FULL[n]) n++; return n; };
+const isComplete = () => said.length === FULL.length && prefixLen() === FULL.length;
+const fullSentence = () => FULL.join(' ') + '.';
+
+function renderSteps(hitKey) {
+  const n = prefixLen();
+  $('#signSteps').innerHTML = SEQUENCE.map((s, i) => `
+    <li class="${i < n ? 'done' : i === n ? 'next' : ''} ${s.key === hitKey ? 'hit' : ''}" data-key="${s.key}">
+      <div class="arts">${s.art.map(k => `<div class="art">${HandArt.svg(k, { label: s.word + (s.art.length > 1 ? ' letter ' + k : '') })}</div>`).join('')}</div>
+      <div>
+        <b>${i + 1}. ${esc(s.word)}</b>
+        <span class="how">${esc(s.how)}</span>
+        ${i < n ? '<span class="tag">✓ Done</span>' : i === n ? '<span class="tag">Next</span>' : ''}
+      </div>
+      <button class="btn small" data-add="${s.key}" aria-label="Add the word ${esc(s.word)}">Add</button>
+    </li>`).join('');
+}
+
+function renderMessage() {
+  const el = $('#message'), st = $('#msgStatus'), n = prefixLen(), done = isComplete();
+  if (!said.length) { el.textContent = 'Your signed message appears here.'; el.className = 'message empty'; }
+  else { el.textContent = said.join(' ') + (done ? '.' : ''); el.className = 'message' + (done ? ' complete' : ''); }
+  $('#stepChip').textContent = `${n} / ${FULL.length}`;
+  $('#stepChip').classList.toggle('signal', done);
+  st.classList.remove('warn');
+  if (done) st.textContent = 'Complete. Press Speak to say it again.';
+  else if (said.length > n) { st.textContent = `That sign was out of order. Press Undo, then sign “${FULL[n]}”.`; st.classList.add('warn'); }
+  else st.textContent = said.length ? `Next sign: “${FULL[n]}”` : 'Start with “I”.';
+}
+
+function commitSign(s, now) {
+  if (last.key === s.key && now - last.at < 2000) return false;
+  last = { key: s.key, at: now };
+  said.push(s.word);
+  flashStage();
+  if (navigator.vibrate) navigator.vibrate(40);
+  renderSteps(s.key); renderMessage();
+  if (settings.autoSpeak && isComplete()) speak(fullSentence());
+  return true;
+}
+
+$('#signSteps').addEventListener('click', e => {
+  const b = e.target.closest('button[data-add]'); if (!b) return;
+  commitSign(BY[b.dataset.add], performance.now() + 3000);
+});
+$('#btnSpeak').addEventListener('click', () => {
+  const t = said.length ? said.join(' ') + (isComplete() ? '.' : '') : '';
+  if (!t) { toast('Nothing to say yet'); return; }
+  if (!canSpeak) { toast('This browser cannot speak text'); return; }
+  speak(t);
+});
+$('#btnUndo').addEventListener('click', () => {
+  if (!said.length) return;
+  said.pop(); last = { key: null, at: -1e9 };
+  if (canSpeak) speechSynthesis.cancel();
+  renderSteps(); renderMessage();
+});
+$('#btnClear').addEventListener('click', () => {
+  said = []; last = { key: null, at: -1e9 }; dm = { key: null, since: 0, done: false };
+  if (canSpeak) speechSynthesis.cancel();
+  renderSteps(); renderMessage();
+});
+$('#btnCopy').addEventListener('click', async () => {
+  const t = said.join(' ') + (isComplete() ? '.' : '');
+  if (!t) { toast('Nothing to copy yet'); return; }
+  try { await navigator.clipboard.writeText(t); toast('Copied'); } catch { toast('Could not copy'); }
+});
+
+/* ---------- camera + hand tracking ---------- */
+const camera = {
+  video: Object.assign(document.createElement('video'), { playsInline: true, muted: true, autoplay: true }),
+  stream: null, landmarker: null, running: false, starting: false, lastTime: -1, lastRes: null,
+  stage: null, colors: {},
+};
+const CONNECTIONS = [[0,1],[1,2],[2,3],[3,4],[0,5],[5,6],[6,7],[7,8],[5,9],[9,10],[10,11],[11,12],[9,13],[13,14],[14,15],[15,16],[13,17],[17,18],[18,19],[19,20],[0,17]];
+
+function readColors() {
+  const cs = getComputedStyle(document.documentElement);
+  camera.colors = { signal: cs.getPropertyValue('--signal').trim(), accent: cs.getPropertyValue('--accent').trim() };
+}
+readColors();
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change', readColors);
+
+function buildStage(el) {
+  el.innerHTML = `
+    <canvas aria-label="Camera view"></canvas>
+    <div class="badge" hidden><span class="chip"></span></div>
+    <div class="flash"></div>
+    <div class="idle"><div class="idle-inner">
+      <div class="hand-wrap">${HandArt.svg('B', { label: 'Open hand' })}</div>
+      <h3>Sign to the camera</h3>
+      <p class="idle-msg">Keep one hand in view with good light on it, then sign “I want to renew my ID”.</p>
+      <button class="btn primary start-cam">Start camera</button>
+    </div></div>`;
+  const st = { el, canvas: el.querySelector('canvas'), idle: el.querySelector('.idle'), msg: el.querySelector('.idle-msg'),
+    badge: el.querySelector('.badge'), flash: el.querySelector('.flash'), btn: el.querySelector('.start-cam') };
+  st.ctx = st.canvas.getContext('2d');
+  st.btn.addEventListener('click', () => startCamera());
+  camera.stage = st;
+}
+function setStatus(text, on) {
+  $('#camPillText').textContent = text;
+  $('#camPill').classList.toggle('on', !!on);
+  const st = camera.stage;
+  st.badge.hidden = !camera.running;
+  st.badge.querySelector('.chip').textContent = text;
+}
+function showIdleMessage(msg, isError) {
+  const st = camera.stage;
+  st.idle.hidden = false; st.msg.textContent = msg; st.msg.style.color = isError ? '#ffb4a6' : '';
+}
+
+async function startCamera() {
+  if (camera.running || camera.starting) return camera.running;
+  camera.starting = true;
+  const btn = camera.stage.btn; btn.disabled = true; btn.textContent = 'Starting…';
+  try {
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) throw Object.assign(new Error('nomedia'), { name: 'NoMedia' });
+    camera.stream = await navigator.mediaDevices.getUserMedia({ video: { width: { ideal: 960 }, height: { ideal: 720 }, facingMode: 'user' }, audio: false });
+    camera.video.srcObject = camera.stream;
+    await camera.video.play();
+    camera.running = true;
+    camera.stage.idle.hidden = true;
+    setStatus('Loading hand model…', false);
+    requestAnimationFrame(loop);
+    if (!camera.landmarker) await loadModel();
+    setStatus('Tracking', true);
+    return true;
+  } catch (e) {
+    let msg = 'The camera could not start. ' + (e.message || '');
+    if (e.name === 'NotAllowedError' || e.name === 'SecurityError') msg = 'Camera access was blocked. Click the camera icon in the address bar, allow access, then press Start camera again.';
+    else if (e.name === 'NotFoundError' || e.name === 'OverconstrainedError') msg = 'No camera was found. Plug one in or check that no other app is using it.';
+    else if (e.name === 'NotReadableError') msg = 'Another app is using the camera. Close it and try again.';
+    else if (e.name === 'NoMedia') msg = 'This browser cannot use the camera here. Open this page in Chrome, Edge or Safari.';
+    else if (e.name === 'ModelError') msg = 'The hand-tracking model could not download. Check your internet connection and try again.';
+    stopCamera(false);
+    showIdleMessage(msg, true);
+    setStatus('Camera off', false);
+    return false;
+  } finally {
+    camera.starting = false; btn.disabled = false; btn.textContent = 'Start camera';
+  }
+}
+async function loadModel() {
+  try {
+    const vision = await import(MP_BUNDLE);
+    const files = await vision.FilesetResolver.forVisionTasks(MP_WASM);
+    const opts = d => ({ baseOptions: { modelAssetPath: MP_MODEL, delegate: d }, runningMode: 'VIDEO', numHands: 1,
+      minHandDetectionConfidence: 0.6, minHandPresenceConfidence: 0.6, minTrackingConfidence: 0.5 });
+    try { camera.landmarker = await vision.HandLandmarker.createFromOptions(files, opts('GPU')); }
+    catch { camera.landmarker = await vision.HandLandmarker.createFromOptions(files, opts('CPU')); }
+  } catch (e) {
+    console.error(e);
+    throw Object.assign(new Error('model'), { name: 'ModelError' });
+  }
+}
+function stopCamera(updateUi = true) {
+  if (camera.stream) camera.stream.getTracks().forEach(t => t.stop());
+  camera.stream = null; camera.running = false; camera.lastRes = null;
+  if (updateUi) { showIdleMessage('Keep one hand in view with good light on it, then sign “I want to renew my ID”.'); setStatus('Camera off', false); }
+}
+function loop() {
+  if (!camera.running) return;
+  requestAnimationFrame(loop);
+  const v = camera.video;
+  if (v.readyState < 2) return;
+  const now = performance.now();
+  if (camera.landmarker && v.currentTime !== camera.lastTime) {
+    camera.lastTime = v.currentTime;
+    try { camera.lastRes = camera.landmarker.detectForVideo(v, now); } catch (e) { console.warn(e); camera.lastRes = null; }
+    translatorFrame(buildFrame(camera.lastRes, now));
+  }
+  draw();
+}
+function buildFrame(res, now) {
+  const frame = { now, hand: null, sign: null };
+  if (res && res.landmarks && res.landmarks.length) {
+    frame.hand = { img: res.landmarks[0], world: res.worldLandmarks[0] };
+    frame.sign = SignRecognizer.idClassify(frame.hand.world, frame.hand.img);
+  }
+  return frame;
+}
+function draw() {
+  const st = camera.stage;
+  const v = camera.video, c = st.canvas;
+  const w = v.videoWidth || 640, h = v.videoHeight || 480;
+  if (c.width !== w || c.height !== h) { c.width = w; c.height = h; }
+  const ctx = st.ctx;
+  ctx.save();
+  ctx.translate(w, 0); ctx.scale(-1, 1);            // mirror, like looking in a mirror
+  ctx.drawImage(v, 0, 0, w, h);
+  const res = camera.lastRes;
+  if (settings.hints && res && res.landmarks) {
+    for (const lm of res.landmarks) {
+      ctx.lineWidth = Math.max(3, w / 220); ctx.strokeStyle = camera.colors.signal; ctx.lineCap = 'round';
+      ctx.beginPath();
+      for (const [a, b] of CONNECTIONS) { ctx.moveTo(lm[a].x * w, lm[a].y * h); ctx.lineTo(lm[b].x * w, lm[b].y * h); }
+      ctx.stroke();
+      for (let i = 0; i < lm.length; i++) {
+        const tip = i === 4 || i === 8 || i === 12 || i === 16 || i === 20;
+        ctx.beginPath(); ctx.arc(lm[i].x * w, lm[i].y * h, tip ? w / 120 : w / 180, 0, Math.PI * 2);
+        ctx.fillStyle = tip ? camera.colors.accent : '#ffffff'; ctx.fill();
+        ctx.lineWidth = 2; ctx.strokeStyle = 'rgba(0,0,0,.45)'; ctx.stroke();
+      }
+    }
+  }
+  ctx.restore();
+}
+function flashStage() {
+  const st = camera.stage; if (!st) return;
+  st.flash.classList.add('show');
+  requestAnimationFrame(() => setTimeout(() => st.flash.classList.remove('show'), 60));
+}
+
+/* ---------- reading the signs ---------- */
+// A sign counts when the same handshape is seen steadily for a moment. A short
+// loss of tracking does not reset it.
+let lostAt = 0;
+function translatorFrame(f) {
+  const now = f.now;
+  const cand = f.sign ? BY[f.sign] : null;
+  if (!f.hand) { if (now - lostAt > 400) dm = { key: null, since: now, done: false }; renderReadout(null, f, 0); return; }
+  lostAt = now;
+  const key = cand ? cand.key : null;
+  if (key !== dm.key) dm = { key, since: now, done: false };
+  let pct = 0;
+  if (cand && !dm.done) {
+    pct = Math.min(1, (now - dm.since) / (settings.hold * 0.5));
+    if (pct >= 1) { dm.done = true; pct = 0; commitSign(cand, now); }
+  }
+  renderReadout(cand, f, dm.done && cand ? 1 : pct);
+}
+
+function renderReadout(cand, f, pct) {
+  $('#ringProg').style.strokeDashoffset = (226.2 * (1 - pct)).toFixed(1);
+  const g = $('#seenGlyph');
+  const n = prefixLen();
+  const nextStep = n < FULL.length ? SEQUENCE[n] : null;
+  let t, name, hint;
+  if (cand) { t = cand.word; name = `“${cand.word}”`; hint = dm.done ? 'Got it. Change your hand for the next sign.' : 'Hold it…'; }
+  else if (f.hand) { t = '?'; name = 'Not one of the six signs'; hint = nextStep ? `Next: “${nextStep.word}”. ${nextStep.how}` : 'All six signs are done.'; }
+  else { t = '–'; name = 'No hand'; hint = nextStep && said.length ? `Raise one hand and sign “${nextStep.word}”.` : 'Raise one hand into view.'; }
+  if (g.textContent !== t) { g.textContent = t; g.classList.toggle('long', t.length > 2); }
+  const nm = $('#seenName'); if (nm.textContent !== name) nm.textContent = name;
+  const h = $('#seenHint'); if (h.textContent !== hint) h.textContent = hint;
+}
+
+/* ---------- settings ---------- */
+function bindRange(id, key, fmt) {
+  const el = $(id), out = $(id + 'Val');
+  el.value = settings[key];
+  const show = () => { if (out) out.textContent = fmt(Number(el.value)); };
+  show();
+  el.addEventListener('input', () => { settings[key] = Number(el.value); show(); saveSettings(); });
+}
+function bindSwitch(id, key) {
+  const el = $(id); el.checked = !!settings[key];
+  el.addEventListener('change', () => { settings[key] = el.checked; saveSettings(); });
+}
+bindRange('#setHold', 'hold', v => (v / 2000).toFixed(2) + ' s to confirm a sign');
+bindRange('#setRate', 'rate', v => v);
+bindSwitch('#setHints', 'hints');
+bindSwitch('#setAutoSpeak', 'autoSpeak');
+$('#setVoice').addEventListener('change', e => { settings.voice = e.target.value; saveSettings(); speak('I want to renew my ID'); });
+if (canSpeak) { loadVoices(); speechSynthesis.addEventListener('voiceschanged', loadVoices); }
+else { $('#setVoice').innerHTML = '<option>Speech not available</option>'; $('#setVoice').disabled = true; }
+
+/* ---------- reply (speech to text) ---------- */
+const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+let recog = null, listening = false;
+function showReply(text) {
+  const el = $('#replyText');
+  el.textContent = text || 'Nothing yet.';
+  el.classList.toggle('empty', !text);
+}
+if (!SR) { $('#btnListen').disabled = true; $('#btnListen').title = 'Speech recognition works in Chrome, Edge and Safari'; }
+$('#btnListen').addEventListener('click', () => {
+  if (!SR) return;
+  if (listening) { recog.stop(); return; }
+  recog = new SR();
+  recog.lang = 'en-US'; recog.interimResults = true; recog.continuous = true;
+  let finalText = '';
+  recog.onresult = e => {
+    let interim = '';
+    for (let i = e.resultIndex; i < e.results.length; i++) {
+      if (e.results[i].isFinal) finalText += e.results[i][0].transcript + ' ';
+      else interim += e.results[i][0].transcript;
+    }
+    showReply((finalText + interim).trim());
+  };
+  recog.onerror = e => { if (e.error === 'not-allowed') toast('Microphone access was blocked'); else if (e.error !== 'no-speech' && e.error !== 'aborted') toast('Listening stopped: ' + e.error); };
+  recog.onend = () => { listening = false; $('#btnListen').classList.remove('listening'); $('#btnListen span').textContent = 'Listen'; };
+  try { recog.start(); listening = true; $('#btnListen').classList.add('listening'); $('#btnListen span').textContent = 'Stop'; showReply(''); $('#replyText').textContent = 'Listening…'; }
+  catch { toast('Could not start the microphone'); }
+});
+$('#btnReplyShow').addEventListener('click', () => { const v = $('#replyInput').value.trim(); if (v) { showReply(v); $('#replyInput').value = ''; } });
+$('#replyInput').addEventListener('keydown', e => { if (e.key === 'Enter') $('#btnReplyShow').click(); });
+
+/* ---------- start ---------- */
+buildStage($('.stage[data-stage]'));
+$('#brandMark').innerHTML = HandArt.svg('ILY', { label: '', w: 68, h: 76 });
+if (!window.isSecureContext) {
+  $('#envNotice').innerHTML = `<div class="notice err">This page is not in a secure context, so the browser will block the camera. Open it from an https address, or open the file directly on your computer in Chrome or Edge.</div>`;
+}
+renderSteps();
+renderMessage();
+</script>
+</body>
+</html>
